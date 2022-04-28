@@ -4,10 +4,11 @@
 
 ---
 
-#### Prerequisites
-1. Install [Node.js](https://nodejs.org/en/download/)   
-2. Fork this repository: https://github.com/AlreadyBored/basic-js
-3. Clone your newly created repo: https://github.com/<%your_github_username%>/basic-js/  
+## Prerequisites
+
+1. Install [Node.js](https://nodejs.org/en/download/)
+2. Fork this repository: `https://github.com/AlreadyBored/basic-js`
+3. Clone your newly created repo: `https://github.com/<%your_github_username%>/basic-js/`  
 4. Go to folder `basic-js`  
 5. To install all dependencies use [`npm install`](https://docs.npmjs.com/cli/install)  
 6. Run `npm run test` in command line.
@@ -15,7 +16,8 @@
 
 ---
 
-#### Submit to [rs app](https://app.rs.school)
+## Submit to [rs app](https://app.rs.school)
+
 1. Open [rs app](https://app.rs.school) and login
 2. Go to submit task page
 3. Select your task (BasicJS)
@@ -23,13 +25,15 @@
 
 ---
 
-#### Notes
+## Notes
+
 1. We recommend you to use Node.js of version 14.x.x LTS. If you use any of features, that does not supported by Node.js v14, there may be problems with task submit.
 2. Please, be sure that each of your tests is limited to 30 sec.
 
 ---
 
 ## General task description
+
 Your task is to write several functions that are the solution to the subtasks. Subtasks descriptions, as well as instructions on how to run tests and submit solutions are below.
 
 ---
@@ -63,12 +67,15 @@ The approximate age of the sample is calculated by measuring the **ratio** of th
 [Read about method](https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps/Supplemental_Modules_(Physical_and_Theoretical_Chemistry)/Nuclear_Chemistry/Nuclear_Kinetics/Half-Lives_and_Radioactive_Decay_Kinetics#section_2)
 
 ---
+
+```html
 <details>
 
   <summary>About calculations</summary>
   You can use the formula from the article at the link above. 0.693 is an approximation of the natural logarithm of two.
 
 </details>
+```
 
 ---
 
@@ -115,12 +122,15 @@ Your task is to implement the function `getSeason(date)` that accepts `Date` obj
 Time of the year must be `string`.
 
 ---
+
+```html
 <details>
 
 <summary>Seasons in English</summary>
 The names of the seasons in English are: spring, summer, autumn (fall), winter.
 
 </details>
+```
 
 ---
 
@@ -148,6 +158,7 @@ Write your code in `src/what-season.js`.
 It consists of three rods and a number of disks of different sizes, which can slide onto any rod. The puzzle starts with the disks in a neat stack in ascending order of size on one rod, the smallest at the top, thus making a conical shape.
 
 The objective of the puzzle is to move the entire stack to another rod, obeying the following simple **rules**:
+
 * Only **one** disk can be moved at a time.
 * Each move consists of taking the **upper** disk from one of the stacks and placing it on **top** of another stack or on an empty rod.
 * No **larger** disk may be placed on top of a **smaller** disk.
@@ -158,6 +169,7 @@ Implement the function `calculateHanoi` that accepts `diskNumber` and `turnsSpee
 Both parameters are `numbers`.
 
 `calculateHanoi` function returns an object with 2 properties:
+
 * `turns` (minimum `number` of turns to solve the puzzle)
 * `seconds` (minimum `number` of **seconds** to solve the puzzle at a given `turnsSpeed`, seconds must be an integer, obtained  from **rounded down** (floor) calculation result)
 
@@ -176,6 +188,7 @@ Write your code in `src/hanoi-tower.js`.
 ![Transform array](https://www.capturehighered.com/wp-content/uploads/2019/02/The-Call-720x332.jpg)  
 Your task is to implement the function `transform(arr)` that takes an `array` and returns **transformed** array, based on the **control sequences** that `arr` contains.
 **Control sequences** are defined `string` elements of the mentioned `array`:
+
 * `--discard-next` excludes the next element of the array from the transformed array.
 * `--discard-prev` excludes the previous element of the array from the transformed array.
 * `--double-next` duplicates the next element of the array in the transformed array.
@@ -200,6 +213,7 @@ Let's practice in [chaining](https://en.wikipedia.org/wiki/Method_chaining)!
 
 Your task is to create the object `chainMaker` that creates chains. The finished chain is a `string` and looks like this: `'( value1 )~~( value2 )~~( value3 )'`.
 The `chainMaker` has several **methods** for creating chains and modifying them:
+
 * `getLength` returns the current chain length as a number;
 * `addLink(value)` adds a link containing a `string` representation of the `value` to the chain;
 * `removeLink(position)` removes a chain link in the specified position;
@@ -240,11 +254,13 @@ For example:
 Write your code in `src/recursive-depth.js`.
 
 ---
+
 ### **Extended repeater**
 
 ![Extended repater](https://farm5.staticflickr.com/4683/39024400961_732f449b65.jpg)  
 Your task is to implement the function `repeater(str, options)`.
 This function returns a repeating `string` based on the given parameters:
+
 * `str` is a `string` to repeat;
 * `options` is an `object` of options, that contains properties:
   * `repeatTimes` sets the `number` of repetitions of the `str`;
@@ -255,7 +271,7 @@ This function returns a repeating `string` based on the given parameters:
 
 The `str` and `addition` parameters are `strings` by default. In case when **type** of these parameters is different, they must be converted to a `string`.
 
-`separator` and `additionSeparator` parameters are `strings`. 
+`separator` and `additionSeparator` parameters are `strings`.
 
 `repeatTimes` and `additionRepeatTimes` are integer `numbers` (in the absence of any of them, the corresponding string is not repeated).
 
@@ -275,7 +291,7 @@ Cryptography is awesome! Let's try to organize production of encryption machines
 Our machine will have 2 modifications: **direct** and **reverse** (the type of machine is determined at the moment of creation). The **direct** machine simply encodes and decodes the string that was transmitted to it, and the **reverse** machine returns an **inverted** string after encoding and decoding.
 
 Your task is to implement the class `VigenereCipheringMachine`. `constructor` of this `class` accepts `true` (**or nothing**) to create **direct** machine and `false` to create **reverse** machine.
-Each instance of `VigenereCipheringMachine` must have 2 methods: `encrypt` and `decrypt`. 
+Each instance of `VigenereCipheringMachine` must have 2 methods: `encrypt` and `decrypt`.
 
 `encrypt` method accepts 2 parameters: `message` (`string` to encode) and `key` (`string`-keyword).
 
@@ -304,6 +320,7 @@ Write your code in `src/vigenere-cipher.js`.
 ---
 
 ### **(ST) Common character count**
+
 Your task is to implement function that accepts two **strings** (`s1` and `s2`) and returns **number** of common characters between them.
 
 For example:
@@ -315,6 +332,7 @@ Write your code in `src/common-character-count.js`.
 ---
 
 ### **(ST) Delete digit**
+
 Your task is to implement function that accepts **integer number** (`n`) and returns maximal **number** you can obtain by deleting exactly one digit of the given number.
 
 For example:
@@ -326,6 +344,7 @@ Write your code in `src/delete-digit.js`.
 ---
 
 ### **(ST) DNS stat**
+
 Your task is to implement function that accepts an **array** of domains (`domains`) and returns the **object** with the appearances of the DNS.
 
 For example:
@@ -337,6 +356,7 @@ Write your code in `src/dns-stats.js`.
 ---
 
 ### **(ST) Encode line**
+
 Your task is to implement function that accepts **string** (`str`) and returns its encoded version.
 
 For example:
@@ -348,6 +368,7 @@ Write your code in `src/encode-line.js`.
 ---
 
 ### **(ST) File names**
+
 There's a list of file, since two files cannot have equal names, the one which comes later will have a suffix **(k)**, where k is the smallest **integer** such that the found name is not used yet.
 Your task is to implement function that accepts **array** of names (`names`) and returns an **array** of names that will be given to the files.
 
@@ -360,6 +381,7 @@ Write your code in `src/file-names.js`.
 ---
 
 ### **(ST) Get email domain**
+
 Your task is to implement function that accepts email address (`email`) and returns it's **domain**.  
 
 For example:
@@ -371,6 +393,7 @@ Write your code in `src/get-email-domain.js`.
 ---
 
 ### **(ST) Is MAC-48 Adress?**
+
 The **MAC-48 address** is six groups of two hexadecimal digits (0 to 9 or A to F) separated by hyphens.
 Your task is to implement function that accepts **string** (`inputString`) and returns `true` if **string** is valid **MAC-48 adress**.  
 
@@ -383,11 +406,12 @@ Write your code in `src/mac-adress.js`.
 ---
 
 ### **(ST) Matrix elements sum**
+
 Given **matrix**, a rectangular matrix of **integers**, just add up all the values that **don't appear below a "0"**.
 
 For example:
 
-```
+```js
 const matrix = [
  [0, 1, 1, 2],
  [0, 5, 0, 0],
@@ -402,11 +426,12 @@ Write your code in `src/matrix-elements-sum.js`.
 ---
 
 ### **(ST) Minesweeper**
+
 In the popular Minesweeper game you have a board with some mines and cells that have a **number** in it that indicates the total **number of mines** in the neighboring cells. Starting off with some arrangement of mines we want to create a Minesweeper game setup.
 
 For example:
 
-```
+```js
 const matrix = [
  [true, false, false],
  [false, true, false],
@@ -425,6 +450,7 @@ Write your code in `src/mine-sweeper.js`.
 ---
 
 ### **(ST) Sort by height**
+
 Given an array with heights, sort them except if the value is `-1`.
 Your task is to implement function that accepts **array** (`arr`) and returns it **sorted**
 
@@ -437,6 +463,7 @@ Write your code in `src/sort-by-height.js`.
 ---
 
 ### **(ST) Sum digits**
+
 Your task is to implement function that accepts a **number** (`n`) and returns the **sum of its digits** until we get to a **one digit number**.  
 
 For example:
@@ -454,6 +481,7 @@ Write your code in `src/sum-digits.js`.
 © [AlreadyBored](https://github.com/alreadybored)  
 
 & tasks:
+
 * Common character count
 * Delete digit
 * DNS stat
