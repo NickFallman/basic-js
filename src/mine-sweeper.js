@@ -28,13 +28,12 @@ const { NotImplementedError } = require('../extensions/index.js');
 //   // remove line with error and write your code here
 // }
 function minesweeper( matrix ) {
-  // console.log(matrix);
   let sum = 0;
   const rowsNum = matrix.length;
   const colsNum = matrix[0].length;
-  // const bufArr = Array(colsNum).fill(null);
   const outArr = [];
   let bufArr = [];
+
   for (let i = 0; i < rowsNum; i++) {
     for (let j = 0; j < colsNum; j++) {
       m = i - 1; n = j - 1;
@@ -58,9 +57,7 @@ function minesweeper( matrix ) {
     }
     outArr.push(bufArr);
     bufArr = [];
-    // console.log(`Row: ${i}`, outArr);
   }
-  // console.log(outArr);
   return outArr;
 }
 
