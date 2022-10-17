@@ -27,12 +27,8 @@ class VigenereCipheringMachine {
   }
 
   encrypt(inMsg, passwKey) {
-    if(!Boolean(inMsg) || !Boolean(passwKey)) {
-      throw new Error('Incorrect arguments!');
-    };
-    if ((inMsg === null) || (passwKey === null)) {
-      throw new Error('Incorrect arguments!');
-    };
+    if(!inMsg || !passwKey) throw new Error('Incorrect arguments!');
+    if ((inMsg === null) || (passwKey === null)) throw new Error('Incorrect arguments!');
     if(typeof inMsg !== 'string' || typeof passwKey !== 'string' || 
       inMsg === '' || passwKey === '') {
         throw new Error('Incorrect arguments!');
@@ -68,13 +64,9 @@ class VigenereCipheringMachine {
   }
 
   decrypt(inMsg, passwKey) {
-    if (!Boolean(inMsg) || !Boolean(passwKey)) {
-      throw new Error('Incorrect arguments!');
-    };
-    if ((inMsg === null) || (passwKey === null)) {
-      throw new Error('Incorrect arguments!');
-    };
-    if (typeof inMsg !== 'string' || typeof passwKey !== 'string' || 
+    if(!inMsg || !passwKey) throw new Error('Incorrect arguments!');
+    if ((inMsg === null) || (passwKey === null)) throw new Error('Incorrect arguments!');
+    if(typeof inMsg !== 'string' || typeof passwKey !== 'string' || 
       inMsg === '' || passwKey === '') {
         throw new Error('Incorrect arguments!');
     };
