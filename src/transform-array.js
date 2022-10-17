@@ -26,55 +26,49 @@ function transform( arr ) {
   }
   if (!arr.length) return outArr;
   let bufArr = arr.map(elm => elm);
-  // let value;
   for (let i = 0; i < bufArr.length; i++) {
-    // if (typeof bufArr[i] !== 'string') {
-    //   outArr.push(bufArr[i]);
-    if (typeof bufArr[i] !== 'string') {
+    if (!isCommand(bufArr[i])) {
       outArr.push(bufArr[i]);
-    } else if (bufArr[i].slice(0, 2) !== '--') {
-      // console.log(bufArr[i].slice(0, 2));
-      outArr.push(bufArr[i]);
+      // console.log(bufArr[i]);
     } else {
       if (bufArr[i] === '--discard-prev') {
         outArr = discardPrev(outArr, bufArr, i);
-        // i++;
       };
       if (bufArr[i] === '--double-prev') {
         outArr = doublePrev(outArr, bufArr, i);
         // console.log(outArr);
-        // i++;
       };
       if (bufArr[i] === '--double-next') {
         outArr = doubleNext(outArr, bufArr, i);
         // console.log(outArr);
-        // i++;
       };
       if (bufArr[i] === '--discard-next') {
-        outArr = discardNext(outArr, bufArr, i);
-        // outArr = discardNext(outArr, arr, i);
+        bufArr = discardNext(bufArr, i);
         // console.log(outArr);
-        // i++;
-        // i += 2;
       };
     }
-    // console.log(i, outArr, arr[i]);
+    // console.log(i, outArr, bufArr[i]);
   }
   return outArr;
 }
 
+function isCommand(inVal) {
+  const commandsSet = new Set(['--discard-prev', '--double-prev', '--double-next', 
+    '--discard-next', '--do-nothing']);
+  return (commandsSet.has(inVal));
+}
+
 function discardPrev(outarr, inarr, inidx) {
-  if (outarr.length > 0 && (inarr[inidx - 1] !== '--do-nothing')) return outarr.slice(0, -1);
+  if ((outarr.length > 0) && (!isCommand(inarr[inidx - 1]))) return outarr.slice(0, -1);
   return outarr;
 }
 
 function doublePrev(outarr, inarr, inidx) {
   if (outarr.length > 0) {
-    if ((typeof inarr[inidx - 1] === 'string') && inarr[inidx - 1].slice(0, 2) !== '--') {
+    if (!isCommand(inarr[inidx - 1])) {
       outarr.push(inarr[inidx - 1]);
-    } else if (typeof inarr[inidx - 1] !== 'string') outarr.push(inarr[inidx - 1]);
+    }
   }
-  // if (inidx > 0 && (typeof inarr[inidx - 1] !== 'string')) outarr.push(inarr[inidx - 1]);
   // console.log(outarr);
   return outarr;
 }
@@ -85,12 +79,10 @@ function doubleNext(outarr, inarr, inidx) {
   return outarr;
 }
 
-function discardNext(outarr, inarr, inidx) {
-  if (inidx + 1 < inarr.length && inarr.length > 2) inarr.splice(inidx + 1, 1, '--do-nothing');
-  console.log(inarr);
-  // this.chainArr.splice(position - 1, 1);
-  // splice(start, deleteCount, item1);
-  return outarr;
+function discardNext(inarr, inidx) {
+  if ((inidx + 1) < inarr.length && (inarr.length > 2)) inarr.splice(inidx + 1, 1, '--do-nothing');
+  // console.log(inarr);
+  return inarr;
 }
 
 module.exports = {
