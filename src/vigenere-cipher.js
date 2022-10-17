@@ -19,14 +19,109 @@ const { NotImplementedError } = require('../extensions/index.js');
  * reverseMachine.decrypt('AEIHQX SX DLLU!', 'alphonse') => '!NWAD TA KCATTA'
  * 
  */
+// class VigenereCipheringMachine {
+//   encrypt() {
+//     throw new NotImplementedError('Not implemented');
+//     // remove line with error and write your code here
+//   }
+//   decrypt() {
+//     throw new NotImplementedError('Not implemented');
+//     // remove line with error and write your code here
+//   }
+// }
 class VigenereCipheringMachine {
-  encrypt() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+
+  constructor (cipherDirection) {
+    this.cipherDirection = Boolean(cipherDirection === undefined) || Boolean(cipherDirection);
+    // console.log(cipherDirection);
+    // this.inputDict = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$(),./|*-&^% ';
+    this.validChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   }
-  decrypt() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+
+  encrypt(inMsg, passwKey) {
+    if(!Boolean(inMsg) || !Boolean(passwKey)) {
+      throw new Error('Incorrect arguments!');
+    };
+    if(typeof inMsg !== 'string' || typeof passwKey !== 'string' || 
+      inMsg === '' || passwKey === '') {
+        throw new Error('Incorrect arguments!');
+    }
+
+    let encMsg = '';
+    let extdKey = '';
+    let msgForEnc = inMsg.toUpperCase();
+    const charsForEncCounter = msgForEnc.match(/[A-Z]/g).length;
+    if (this.cipherDirection === false) {
+      msgForEnc = msgForEnc.split('').reverse().join(''); 
+    };
+    // console.log(msgForEnc);
+    // console.log(charsForEncCounter);
+    for (let i = 0; i < charsForEncCounter; i++) {
+      extdKey += passwKey[i % passwKey.length];
+    }
+    extdKey = extdKey.toUpperCase();
+    if (this.cipherDirection === false) {
+      extdKey = extdKey.split('').reverse().join(''); 
+    };
+    // console.log(extdKey);
+    let msgCharIdx = 0, passCharIdx = 0, passCharCounter = 0;
+    for (let i = 0; i < msgForEnc.length; i++) {
+      msgCharIdx = this.validChars.indexOf(msgForEnc[i]);
+      passCharIdx = this.validChars.indexOf(extdKey[passCharCounter]);
+      // console.log('MsgChar:', msgForEnc[i], msgCharIdx, passCharIdx);
+      if (msgCharIdx >= 0) {
+        encMsg += this.validChars[(msgCharIdx + passCharIdx) % this.validChars.length]/*  + '|' */;
+        passCharCounter = (passCharCounter + 1) % extdKey.length;
+      } else {
+        encMsg += msgForEnc[i]/*  + '|' */;
+      }
+    }
+    // const extdKey = '';
+    return encMsg; 
+  }
+
+  decrypt(inMsg, passwKey) {
+    if(!Boolean(inMsg) || !Boolean(passwKey)) {
+      throw new Error('Incorrect arguments!');
+    }
+    if(typeof inMsg !== 'string' || typeof passwKey !== 'string' || 
+      inMsg === '' || passwKey === '') {
+        throw new Error('Incorrect arguments!');
+    }
+
+    let decMsg = '';
+    let extdKey = '';
+    let msgForDec = inMsg.toUpperCase();
+    const charsForEncCounter = msgForDec.match(/[A-Z]/g).length;
+    if (this.cipherDirection === false) {
+      msgForDec = msgForDec.split('').reverse().join(''); 
+    };
+    // console.log(msgForDec);
+    // console.log(charsForEncCounter);
+    for (let i = 0; i < charsForEncCounter; i++) {
+      extdKey += passwKey[i % passwKey.length];
+    }
+    extdKey = extdKey.toUpperCase();
+    if (this.cipherDirection === false) {
+      extdKey = extdKey.split('').reverse().join(''); 
+    };
+    // console.log(extdKey);
+    let msgCharIdx = 0, passCharIdx = 0, passCharCounter = 0;
+    let indexForCheck;
+    for (let i = 0; i < msgForDec.length; i++) {
+      msgCharIdx = this.validChars.indexOf(msgForDec[i]);
+      passCharIdx = this.validChars.indexOf(extdKey[passCharCounter]);
+      // console.log('MsgChar:', msgForDec[i], msgCharIdx, passCharIdx);
+      if (msgCharIdx >= 0) {
+        indexForCheck = msgCharIdx - passCharIdx;
+        indexForCheck = indexForCheck > 0 ? indexForCheck : indexForCheck + this.validChars.length;
+        decMsg += this.validChars[indexForCheck % this.validChars.length] /* + '|' */;
+        passCharCounter = (passCharCounter + 1) % extdKey.length;
+      } else {
+        decMsg += msgForDec[i] /* + '|' */;
+      }
+    }
+    return decMsg; 
   }
 }
 
